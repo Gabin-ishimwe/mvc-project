@@ -11,6 +11,9 @@ spring:
         format_sql: true
     show-sql: true
 
+  application:
+    name: inventory-service
+
   datasource:
     url: jdbc:postgresql://localhost:5432/inventoryservice
     username: postgres
@@ -18,3 +21,9 @@ spring:
 
 server:
   port: 8080
+
+## add eureka server url to this client
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka

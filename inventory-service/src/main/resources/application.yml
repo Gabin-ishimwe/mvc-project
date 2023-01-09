@@ -20,7 +20,7 @@ spring:
     password: andela
 
 server:
-  port: 8080
+  port: 0
 
 ## add eureka server url to this client
 eureka:

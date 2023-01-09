@@ -25,7 +25,7 @@ public class OrderService {
     private OrderRepository orderRepository;
 
     @Autowired
-    private WebClient webClient;
+    private WebClient.Builder webClient;
 
     public ResponseEntity<?> placeOrder(OrderRequestDto orderRequestDto) {
         List<OrderLineItems> orderLineItems =  orderRequestDto.getOrderLineDto()
@@ -41,8 +41,8 @@ public class OrderService {
         List<String> skuCodes = orderModel.getOrderLineItems().stream().map(OrderLineItems::getSkuCode).toList();
 
         // call inventory service, and place order if product is in stock
-        InventoryResponse[] result = webClient.get()
-                .uri("http://localhost:8080/api/inventory",
+        InventoryResponse[] result = webClient.build().get()
+                .uri("http://inventory-service/api/inventory",
                         uriBuilder -> {return uriBuilder.queryParam("skuCode", skuCodes).build();})
                 .retrieve()
                 // return body type

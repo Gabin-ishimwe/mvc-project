@@ -27,7 +27,7 @@ public class OrderService {
     @Autowired
     private WebClient.Builder webClient;
 
-    public ResponseEntity<?> placeOrder(OrderRequestDto orderRequestDto) {
+    public String placeOrder(OrderRequestDto orderRequestDto) {
         List<OrderLineItems> orderLineItems =  orderRequestDto.getOrderLineDto()
                 .stream()
                 .map((this::mapDtoToRequest))
@@ -57,7 +57,7 @@ public class OrderService {
 
         if(allProductInStock.size() == result.length && !allProductInStock.isEmpty()) {
             orderRepository.save(orderModel);
-            return new ResponseEntity<>("Order placed!", HttpStatus.CREATED);
+            return "Order placed successfully";
         }
         throw new IllegalStateException("Product is not available in stock, try again later");
 

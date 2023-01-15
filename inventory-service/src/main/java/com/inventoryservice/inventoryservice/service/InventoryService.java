@@ -17,9 +17,9 @@ public class InventoryService {
     private InventoryRepository inventoryRepository;
 
     public List<InventoryResponse> findInventory(List<String> skuCode) throws InterruptedException {
-        log.info("Wait started");
-        Thread.sleep(10000);
-        log.info("Wait finished");
+//        log.info("Wait started");
+//        Thread.sleep(10000);
+//        log.info("Wait finished");
         return inventoryRepository.findBySkuCodeIn(skuCode)
                 .stream()
                 .map(inventoryModel -> {

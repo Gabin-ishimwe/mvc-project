@@ -16,3 +16,16 @@ spring:
 
   sleuth:
     probability: 1.0
+
+# Actuators properties
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  health:
+    circuitbreakers:
+      enabled: 'true'
+  endpoint:
+    health:
+      show-details: always

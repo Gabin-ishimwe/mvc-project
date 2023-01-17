@@ -33,3 +33,16 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
+  # Actuators properties
+  management:
+    endpoints:
+      web:
+        exposure:
+          include: '*'
+    health:
+      circuitbreakers:
+        enabled: 'true'
+    endpoint:
+      health:
+        show-details: always
